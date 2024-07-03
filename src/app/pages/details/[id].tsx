@@ -1,31 +1,31 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Container, Card } from '@mantine/core';
-import { fetchItemDetails } from '../../services/api';
-import { Item } from '../../models/Item';
+import { fetchPokemonDetails } from '../../services/api';
+import { Pokemon } from '../../models/Pokemon';
 
 const Details = () => {
     const router = useRouter();
     const { id } = router.query;
-    const [item, setItem] = useState<Item | null>(null);
+    const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             if (id) {
-                const data = await fetchItemDetails(id as string);
-                setItem(data);
+                const data = await fetchPokemonDetails(id as string);
+                setPokemon(data);
             }
         };
         fetchData();
     }, [id]);
 
-    if (!item) return <div>Loading...</div>;
+    if (!pokemon) return <div>Loading...</div>;
 
     return (
         <Container>
             <Card>
-                <h1>{item.name}</h1>
-                <p>{item.description}</p>
+                <h1>{pokemon.name}</h1>
+                <p>{pokemon.description}</p>
             </Card>
         </Container>
     );

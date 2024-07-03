@@ -1,23 +1,40 @@
-import { Item } from '../models/Item';
+import { Pokemon } from '../models/Pokemon';
 
-const API_URL = 'https://pokeapi.co/api/v2';
+const API_URL = process.env.POKEMON_API_URL || 'https://pokeapi.co/api/v2';
 
-export const fetchItems = async (query: string): Promise<Item[]> => {
-    const response = await fetch(`${API_URL}/pokemon?limit=10&offset=0`);
+export const fetchPokemons = async (page: number, type: string | null): Promise<{ pokemons: Pokemon[], types: string[] }> => {
+    const offset = (page - 1) * 10;
+    const response = await fetch(`${API_URL}/pokemon?limit=10&offset=${offset}`);
     const data = await response.json();
-    return data.results.map((item: any) => ({
-        id: item.name,
-        name: item.name,
-        description: 'A Pokemon',
+
+    let pokemons = data.results.map((pokemon: Pokemon) => ({
+        id: pokemon.name,
+        name: pokemon.name,
+        image: `https://img.pokemondb.net/artwork/${pokemon.name}.jpg`,
+        description: `Description for ${pokemon.name}`,
     }));
+
+    if (type) {
+        const typeResponse = await fetch(`${API_URL}/type/${type}`);
+        const typeData = await typeResponse.json();
+        const typePokemons = typeData.pokemon.map((p: any) => p.pokemon.name);
+        pokemons = pokemons.filter((pokemon: Pokemon) => typePokemons.includes(pokemon.name));
+    }
+
+    const typesResponse = await fetch(`${API_URL}/type`);
+    const typesData = await typesResponse.json();
+    const types = typesData.results.map((t: any) => t.name);
+
+    return { pokemons, types };
 };
 
-export const fetchItemDetails = async (id: string): Promise<Item> => {
+export const fetchPokemonDetails = async (id: string): Promise<Pokemon> => {
     const response = await fetch(`${API_URL}/pokemon/${id}`);
     const data = await response.json();
     return {
         id: data.name,
         name: data.name,
-        description: 'A detailed description of the Pokemon',
+        image: `https://img.pokemondb.net/artwork/${data.name}.jpg`,
+        description: `Description for ${data.name}`,
     };
 };

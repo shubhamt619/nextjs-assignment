@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { Item } from '../models/Item';
+import { Pokemon } from '../models/Pokemon';
 
 interface FavoritesContextProps {
-    favorites: Item[];
-    addToFavorites: (item: Item) => void;
+    favorites: Pokemon[];
+    addToFavorites: (pokemon: Pokemon) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextProps | undefined>(undefined);
@@ -15,10 +15,10 @@ export const useFavorites = () => {
 };
 
 export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
-    const [favorites, setFavorites] = useState<Item[]>([]);
+    const [favorites, setFavorites] = useState<Pokemon[]>([]);
 
-    const addToFavorites = (item: Item) => {
-        setFavorites((prevFavorites) => [...prevFavorites, item]);
+    const addToFavorites = (pokemon: Pokemon) => {
+        setFavorites((prevFavorites) => [...prevFavorites, pokemon]);
     };
 
     return (
