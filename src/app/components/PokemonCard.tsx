@@ -1,23 +1,27 @@
-import { Card, Button, Paper } from '@mantine/core';
+import { Button, Paper } from '@mantine/core';
 import { Pokemon } from '../models/Pokemon';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface PokemonCardProps {
     pokemon: Pokemon;
 }
 
 export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
+
     return (
-        <Paper withBorder ta="center" shadow="xs" p="xl">
-            <Image
-                src={pokemon.image}
-                width={150}
-                height={150}
-                alt={`Image for ${pokemon.name}`}
-            />
-            <h2>{pokemon.name}</h2>
-            <p>{pokemon.description}</p>
-            <Button>Add to Favorites</Button>
-        </Paper>
+        <Link href={`/details/${pokemon.id}`} passHref>
+            <Paper withBorder ta="center" shadow="xs" p="xl">
+                <Image
+                    src={pokemon.image}
+                    width={150}
+                    height={150}
+                    alt={`Image for ${pokemon.name}`}
+                />
+                <h2>{pokemon.name}</h2>
+                <p>{pokemon.description}</p>
+                <Button>Add to Favorites</Button>
+            </Paper>
+        </Link>
     );
 };

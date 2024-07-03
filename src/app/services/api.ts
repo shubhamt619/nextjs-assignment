@@ -31,10 +31,19 @@ export const fetchPokemons = async (page: number, type: string | null): Promise<
 export const fetchPokemonDetails = async (id: string): Promise<Pokemon> => {
     const response = await fetch(`${API_URL}/pokemon/${id}`);
     const data = await response.json();
+
     return {
-        id: data.name,
+        id: data.id,
         name: data.name,
         image: `https://img.pokemondb.net/artwork/${data.name}.jpg`,
         description: `Description for ${data.name}`,
+        types: data.types.map((type: any) => type.type.name),
+        height: data.height,
+        weight: data.weight,
+        abilities: data.abilities.map((ability: any) => ability.ability.name),
+        stats: data.stats.map((stat: any) => ({
+            name: stat.stat.name,
+            base_stat: stat.base_stat,
+        })),
     };
 };

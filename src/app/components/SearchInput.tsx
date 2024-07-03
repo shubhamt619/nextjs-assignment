@@ -1,16 +1,20 @@
-import { TextInput } from '@mantine/core';
+import { Select } from '@mantine/core';
 
 interface SearchInputProps {
     value: string;
     onChange: (value: string) => void;
+    mb?: number;
 }
 
-export const SearchInput = ({ value, onChange }: SearchInputProps) => {
+export const SearchInput = ({ value, onChange, mb }: SearchInputProps) => {
     return (
-        <TextInput
+        <Select
+            onChange={(value) => onChange(value || '')}
             value={value}
-            onChange={(e) => onChange(e.currentTarget.value)}
-            placeholder="Start Typing Pokemon name..."
+            label="Search"
+            placeholder="Type Pokemon name..."
+            searchable
+            mb={mb ?? 0}
         />
     );
 };
