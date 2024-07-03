@@ -1,9 +1,22 @@
 import { Badge, Button, Group, List, Paper, Space, Title, Image, Text } from '@mantine/core';
 import { PokemonCardProps } from '../models/PokemonCardProps';
+import { useFavorites } from '../context/FavouritesContext';
 
 
 
 const PokemonDetailCard = ({ pokemon }: PokemonCardProps) => {
+
+    const { addToFavorites, removeFromFavorites, favorites } = useFavorites();
+
+    const isFavorite = favorites.some(favName => favName === pokemon.name);
+
+    const handleFavoriteClick = () => {
+        if (isFavorite) {
+            removeFromFavorites(pokemon.name);
+        } else {
+            addToFavorites(pokemon.name);
+        }
+    };
 
     return (
         <Paper withBorder p="xl" shadow="xs" mt={40}>
@@ -38,7 +51,9 @@ const PokemonDetailCard = ({ pokemon }: PokemonCardProps) => {
                 ))}
             </List>
             <Space h="md" />
-            <Button fullWidth>Add to Favorites</Button>
+            <Button fullWidth onClick={handleFavoriteClick} color={isFavorite ? 'red' : 'blue'}>
+                {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+            </Button>
         </Paper>
     );
 };

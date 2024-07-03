@@ -9,13 +9,15 @@ const PokemonCard = ({ pokemon, searchText }: PokemonCardProps) => {
 
     const { addToFavorites, removeFromFavorites, favorites } = useFavorites();
 
-    const isFavorite = favorites.some(fav => fav.id === pokemon.id);
+    const isFavorite = favorites.some(favName => favName === pokemon.id);
+
+
 
     const handleFavoriteClick = () => {
         if (isFavorite) {
-            removeFromFavorites(pokemon.id);
+            removeFromFavorites(pokemon.name);
         } else {
-            addToFavorites(pokemon);
+            addToFavorites(pokemon.name);
         }
     };
 

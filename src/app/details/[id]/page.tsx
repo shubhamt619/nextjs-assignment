@@ -15,6 +15,8 @@ const Details = () => {
     const [pokemon, setPokemon] = useState<Pokemon | null>(null);
     const [loading, setLoading] = useState(true);
 
+
+
     useEffect(() => {
         const fetchData = async () => {
             if (id) {
