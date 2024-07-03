@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { SimpleGrid, LoadingOverlay } from '@mantine/core';
-import { PokemonCard } from './PokemonCard';
+import PokemonCard from './PokemonCard';
 import { fetchPokemons } from '../services/api';
 import { Pokemon } from '../models/Pokemon';
 

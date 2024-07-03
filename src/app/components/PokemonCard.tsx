@@ -2,12 +2,10 @@ import { Button, Paper } from '@mantine/core';
 import { Pokemon } from '../models/Pokemon';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PokemonCardProps } from '../models/PokemonCardProps';
 
-interface PokemonCardProps {
-    pokemon: Pokemon;
-}
 
-export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
+const PokemonCard = ({ pokemon }: PokemonCardProps) => {
 
     return (
         <Link href={`/details/${pokemon.id}`} passHref>
@@ -25,3 +23,5 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
         </Link>
     );
 };
+
+export default PokemonCard;
