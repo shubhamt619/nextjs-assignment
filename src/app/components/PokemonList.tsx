@@ -77,7 +77,9 @@ const PokemonList = () => {
                     <div key={`${pokemon.id}_${index}`} ref={index === pokemons.length - 1 ? lastItemRef : null}>
                         <PokemonCard
                             key={pokemon.id}
-                            pokemon={pokemon} />
+                            pokemon={pokemon}
+                            searchText={searchText}
+                        />
                     </div>
                 ))}
             </SimpleGrid>
