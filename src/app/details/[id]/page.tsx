@@ -7,6 +7,7 @@ import { fetchPokemonDetails } from '../../services/api';
 import { Pokemon } from '../../models/Pokemon';
 import { IconArrowLeft } from '@tabler/icons-react';
 import Link from 'next/link';
+import PokemonDetailCard from '@/app/components/PokemonDetailCard';
 
 const Details = () => {
     const params = useParams();
@@ -38,12 +39,12 @@ const Details = () => {
     return (
         <Container size="sm" mt={20}>
             <Link href="/" passHref>
-                <Button leftSection={<IconArrowLeft size={14} />}>
+                <Button aria-label="Back to Pokemons List" leftSection={<IconArrowLeft size={14} />}>
                     Back to Pokemons List
                 </Button>
             </Link>
             <Title mt="md">Pokemon Details for {pokemon.name}</Title>
-            
+            <PokemonDetailCard pokemon={pokemon} />
         </Container>
     );
 };
