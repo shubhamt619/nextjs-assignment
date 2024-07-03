@@ -1,11 +1,11 @@
-import { Button, Paper } from '@mantine/core';
+import { Button, Paper, Highlight } from '@mantine/core';
 import { Pokemon } from '../models/Pokemon';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PokemonCardProps } from '../models/PokemonCardProps';
 
 
-const PokemonCard = ({ pokemon }: PokemonCardProps) => {
+const PokemonCard = ({ pokemon, searchText }: PokemonCardProps) => {
 
     return (
         <Link href={`/details/${pokemon.id}`} passHref>
@@ -16,7 +16,11 @@ const PokemonCard = ({ pokemon }: PokemonCardProps) => {
                     height={150}
                     alt={`Image for ${pokemon.name}`}
                 />
-                <h2>{pokemon.name}</h2>
+                <h2>
+                    <Highlight highlight={searchText ?? ''}>
+                        {pokemon.name}
+                    </Highlight>
+                </h2>
                 <p>{pokemon.description}</p>
                 <Button>Add to Favorites</Button>
             </Paper>
