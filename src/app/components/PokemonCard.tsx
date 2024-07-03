@@ -1,30 +1,44 @@
-import { Button, Paper, Highlight } from '@mantine/core';
-import { Pokemon } from '../models/Pokemon';
+import { Button, Paper, Highlight, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PokemonCardProps } from '../models/PokemonCardProps';
+import { useFavorites } from '../context/FavouritesContext';
 
 
 const PokemonCard = ({ pokemon, searchText }: PokemonCardProps) => {
 
+    const { addToFavorites, removeFromFavorites, favorites } = useFavorites();
+
+    const isFavorite = favorites.some(fav => fav.id === pokemon.id);
+
+    const handleFavoriteClick = () => {
+        if (isFavorite) {
+            removeFromFavorites(pokemon.id);
+        } else {
+            addToFavorites(pokemon);
+        }
+    };
+
     return (
-        <Link href={`/details/${pokemon.id}`} passHref>
-            <Paper withBorder ta="center" shadow="xs" p="xl">
+        <Paper withBorder ta="center" shadow="xs" p="xl">
+            <Link href={`/details/${pokemon.id}`} passHref>
                 <Image
                     src={pokemon.image}
                     width={150}
                     height={150}
                     alt={`Image for ${pokemon.name}`}
                 />
-                <h2>
+                <Text tt="capitalize" fw={800}>
                     <Highlight highlight={searchText ?? ''}>
                         {pokemon.name}
                     </Highlight>
-                </h2>
+                </Text>
                 <p>{pokemon.description}</p>
-                <Button>Add to Favorites</Button>
-            </Paper>
-        </Link>
+            </Link>
+            <Button onClick={handleFavoriteClick} color={isFavorite ? 'red' : 'blue'}>
+                {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+            </Button>
+        </Paper>
     );
 };
 
