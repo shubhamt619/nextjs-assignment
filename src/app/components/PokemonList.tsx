@@ -71,7 +71,7 @@ const PokemonList = () => {
             ></SearchInput>
             <SimpleGrid
                 mt={50}
-                cols={{ base: 3, xs: 1, s: 1, sm: 2, md: 3, lg: 3 }}
+                cols={{ base: 1, xs: 1, s: 1, sm: 2, md: 3, lg: 3 }}
             >
                 {pokemons.map((pokemon, index) => (
                     <div key={`${pokemon.id}_${index}`} ref={index === pokemons.length - 1 ? lastItemRef : null}>
