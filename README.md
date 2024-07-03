@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Searchable Web Application
 
-First, run the development server:
+This project is a Next.js web application built using TypeScript, designed to provide a searchable interface with browse and detailed pages. The application leverages the Mantine UI library and showcases best practices in Next.js, React, and TypeScript development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- **Browse Page**
+  - Search functionality with debounce
+  - (Optional) Filters for search results
+  - (Optional) Download search results as CSV
+  - Pagination or lazy loading for search results
+- **Details Page**
+  - Detailed view of selected item from the Browse page
+  - (Optional) Add items to favorites
+  - (Optional) Highlight items added to favorites
+- **Navigation**
+  - Seamless navigation between Browse and Details pages
+  - (Optional) View items in favorites
+
+## Technologies Used
+
+- **Next.js** (version 14 or later)
+- **TypeScript**
+- **Mantine** (UI Library)
+- **Storybook** (for technical documentation)
+- **Jest** (for testing)
+
+## Setup and Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+3. Run the development server:
+   ```sh
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+4. Run Storybook for component documentation:
+   ```sh
+   npm run storybook
+   ```
+   Open [http://localhost:6006](http://localhost:6006) in your browser to view the component documentation.
+
+5. Run tests:
+   ```sh
+   npm run test
+   ```
+
+## Project Structure
+
+- `pages/`
+  - `browse.tsx`: Browse page with search and pagination functionality.
+  - `details/[id].tsx`: Details page for selected items.
+- `components/`: Reusable components used across the application.
+- `context/`: Context for state management (e.g., search results, favorites).
+- `styles/`: Styling for the application.
+- `.storybook/`: Configuration for Storybook.
+- `tests/`: Unit tests for components and data fetching logic.
+
+## API Usage
+
+This project uses a public API for data fetching. You can choose any public API for development (e.g., [PokeAPI](https://pokeapi.co/api/v2/), [GitHub API](https://api.github.com/), etc.).
+
+## Approach
+
+1. **Setup Project**: Initialize a Next.js project with TypeScript, ESLint, Prettier, Mantine, and Storybook.
+2. **Browse Page**: Implement search, filters, CSV download, pagination/lazy loading, and data fetching.
+3. **Details Page**: Implement detailed view, navigation, and optional favorites functionality.
+4. **State Management**: Use React context or a state management library to manage the state.
+5. **Testing**: Write unit tests for components using Jest and mock API responses.
+6. **Documentation**: Document components and functionality using Storybook.
+
+## Testing
+
+- Unit tests for components and data fetching logic are written using Jest.
+- Mock API responses are used for predictable testing behavior.
+- Various scenarios are tested, including successful searches, empty results, and error handling.
+
+## Deployment
+
+To build the application for production:
+```sh
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contact
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For any questions or inquiries, please contact [shubhamt619@gmail.com].
