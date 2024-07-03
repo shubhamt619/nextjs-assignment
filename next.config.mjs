@@ -2,7 +2,11 @@
 const nextConfig = {
     images: {
         remotePatterns: [
-            'img.pokemondb.net'
+            {
+                protocol: 'https',
+                hostname: 'img.pokemondb.net',
+                pathname: '**',
+            }
         ],
     },
 };
