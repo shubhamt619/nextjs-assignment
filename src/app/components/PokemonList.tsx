@@ -79,7 +79,6 @@ const PokemonList = () => {
                             key={pokemon.id}
                             pokemon={pokemon}
                             searchText={searchText}
-                            addToFavClicked={() => { }}
                         />
                     </div>
                 ))}
