@@ -1,11 +1,13 @@
-import { Button, Paper, Highlight, Text } from '@mantine/core';
-import Image from 'next/image';
+import { Button, Paper, Highlight, Text, Image } from '@mantine/core';
 import Link from 'next/link';
 import { PokemonCardProps } from '../models/PokemonCardProps';
 import { useFavorites } from '../context/FavouritesContext';
 
 
-const PokemonCard = ({ pokemon, searchText }: PokemonCardProps) => {
+const PokemonCard: React.FC<{
+    pokemon: Pick<PokemonCardProps['pokemon'], "id" | "name" | "description" | "image">;
+    searchText: PokemonCardProps['searchText'];
+}> = ({ pokemon, searchText }) => {
 
     const { addToFavorites, removeFromFavorites, favorites } = useFavorites();
 
@@ -22,7 +24,7 @@ const PokemonCard = ({ pokemon, searchText }: PokemonCardProps) => {
     };
 
     return (
-        <Paper withBorder ta="center" shadow="xs" p="xl">
+        <Paper withBorder ta="center" shadow="xs" p="xl" data-testid="pokemon-card">
             <Link href={`/details/${pokemon.id}`} passHref>
                 <Image
                     src={pokemon.image}

@@ -8,35 +8,32 @@ import { SearchInput } from './SearchInput';
 const PokemonList = () => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
     const [originalPokemons, setOriginalPokemons] = useState<Pokemon[]>([]);
-    const [types, setTypes] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
     const [searching, setSearching] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedType, setSelectedType] = useState<string | null>(null);
     const [searchText, setSearchText] = useState('');
     const observer = useRef<IntersectionObserver | null>(null);
 
 
     const loadMore = useCallback(() => {
         setLoading(true);
-        fetchPokemons(currentPage + 1, selectedType).then(data => {
+        fetchPokemons(currentPage + 1).then(data => {
             setPokemons(prevPokemons => [...prevPokemons, ...data.pokemons]);
             setOriginalPokemons(prevOriginalPokemons => [...prevOriginalPokemons, ...data.pokemons]);
             setLoading(false);
             setCurrentPage(prevPage => prevPage + 1);
         });
-    }, [currentPage, selectedType]);
+    }, [currentPage]);
 
     useEffect(() => {
         setLoading(true);
-        fetchPokemons(1, selectedType).then(data => {
+        fetchPokemons(1).then(data => {
             setPokemons(data.pokemons);
             setOriginalPokemons(data.pokemons);
-            setTypes(data.types);
             setLoading(false);
             setCurrentPage(1);
         });
-    }, [selectedType]);
+    }, []);
 
     useEffect(() => {
         if (searchText) {
@@ -70,10 +67,11 @@ const PokemonList = () => {
                 onChange={setSearchText}
             ></SearchInput>
             <SimpleGrid
+                data-testid="pokemons-list-outer"
                 mt={50}
                 cols={{ base: 1, xs: 1, s: 1, sm: 2, md: 3, lg: 3 }}
             >
-                {pokemons.map((pokemon, index) => (
+                { pokemons.map((pokemon, index) => (
                     <div key={`${pokemon.id}_${index}`} ref={index === pokemons.length - 1 ? lastItemRef : null}>
                         <PokemonCard
                             key={pokemon.id}

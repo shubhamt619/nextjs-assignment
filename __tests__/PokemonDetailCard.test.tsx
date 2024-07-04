@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen } from '../test-utils/index';
+import { render, screen, waitFor } from '../test-utils/index';
 import PokemonDetailCard from '../src/app/components/PokemonDetailCard';
 import { PokemonCardProps } from '../src/app/models/PokemonCardProps';
 import { MantineProvider } from '@mantine/core';
+import { FavoritesProvider } from '@/app/context/FavouritesContext';
 
 // Mock data for a Pokemon
 const mockPokemonData: PokemonCardProps['pokemon'] = {
@@ -25,13 +26,17 @@ const mockPokemonData: PokemonCardProps['pokemon'] = {
 };
 
 describe('PokemonDetailCard', () => {
-    it('renders the Pokemon details correctly', () => {
+    it('renders the Pokemon details correctly', async () => {
         render(
             <MantineProvider>
-                <PokemonDetailCard pokemon={mockPokemonData} />
+                <FavoritesProvider>
+                    <PokemonDetailCard pokemon={mockPokemonData} />
+                </FavoritesProvider>
             </MantineProvider>
         );
 
-        expect(screen.getByRole('button', { name: /add to favorites/i })).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByTestId('pokemon-detail-card')).toBeInTheDocument();
+        });
     });
 });

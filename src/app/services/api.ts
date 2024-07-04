@@ -2,7 +2,7 @@ import { Pokemon } from '../models/Pokemon';
 
 const API_URL = process.env.POKEMON_API_URL || 'https://pokeapi.co/api/v2';
 
-export const fetchPokemons = async (page: number, type: string | null): Promise<{ pokemons: Pokemon[], types: string[] }> => {
+export const fetchPokemons = async (page: number): Promise<{ pokemons: Pokemon[] }> => {
     const offset = (page - 1) * 10;
     const response = await fetch(`${API_URL}/pokemon?limit=10&offset=${offset}`);
     const data = await response.json();
@@ -13,19 +13,7 @@ export const fetchPokemons = async (page: number, type: string | null): Promise<
         image: `https://img.pokemondb.net/artwork/${pokemon.name}.jpg`,
         description: `Description for ${pokemon.name}`,
     }));
-
-    if (type) {
-        const typeResponse = await fetch(`${API_URL}/type/${type}`);
-        const typeData = await typeResponse.json();
-        const typePokemons = typeData.pokemon.map((p: any) => p.pokemon.name);
-        pokemons = pokemons.filter((pokemon: Pokemon) => typePokemons.includes(pokemon.name));
-    }
-
-    const typesResponse = await fetch(`${API_URL}/type`);
-    const typesData = await typesResponse.json();
-    const types = typesData.results.map((t: any) => t.name);
-
-    return { pokemons, types };
+    return { pokemons };
 };
 
 export const fetchPokemonDetails = async (id: string): Promise<Pokemon> => {

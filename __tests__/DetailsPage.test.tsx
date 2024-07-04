@@ -4,6 +4,7 @@ import { fetchPokemonDetails } from '../src/app/services/api';
 import { useRouter, useParams } from 'next/navigation';
 import { MantineProvider } from '@mantine/core';
 import { waitFor } from '@testing-library/react';
+import { FavoritesProvider } from '@/app/context/FavouritesContext';
 
 jest.mock('../src/app/services/api');
 jest.mock('next/navigation', () => ({
@@ -13,7 +14,7 @@ jest.mock('next/navigation', () => ({
 
 const mockPokemonData = {
     id: 1,
-    name: 'Bulbasaur',
+    name: 'bulbasaur',
     image: 'https://img.pokemondb.net/artwork/bulbasaur.jpg',
     types: ['grass', 'poison'],
     height: 7,
@@ -38,16 +39,18 @@ describe('Details Page', () => {
 
         render(
             <MantineProvider>
-                <Details />
+                <FavoritesProvider>
+                    <Details />
+                </FavoritesProvider>
             </MantineProvider>
         );
         // Wait for the data to load
         await waitFor(() => {
-            expect(screen.getByRole('button', { name: 'Back to Pokemons List' })).toBeInTheDocument();
+            expect(screen.getByTestId('back-button')).toBeInTheDocument();
         });
 
         // Check that the BackButton is rendered correctly
-        const backButton = screen.getByRole('button', { name: 'Back to Pokemons List' });
+        const backButton = screen.getByTestId('back-button');
         const link = backButton.closest('a');
         expect(link).toHaveAttribute('href', '/');
 

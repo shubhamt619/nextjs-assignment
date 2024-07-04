@@ -19,7 +19,7 @@ const PokemonDetailCard = ({ pokemon }: PokemonCardProps) => {
     };
 
     return (
-        <Paper withBorder p="xl" shadow="xs" mt={40}>
+        <Paper withBorder p="xl" shadow="xs" mt={40} data-testid="pokemon-detail-card">
             <Image
                 fit="contain"
                 src={pokemon.image}

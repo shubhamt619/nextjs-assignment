@@ -41,7 +41,7 @@ const Details = () => {
     return (
         <Container size="sm" mt={20}>
             <Link href="/" passHref>
-                <Button aria-label="Back to Pokemons List" leftSection={<IconArrowLeft size={14} />}>
+                <Button data-testid="back-button" role="button" aria-label="Back to Pokemons List" leftSection={<IconArrowLeft size={14} />}>
                     Back to Pokemons List
                 </Button>
             </Link>
