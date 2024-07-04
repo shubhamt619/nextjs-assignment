@@ -59,11 +59,11 @@ This project is a Next.js web application built using TypeScript, designed to pr
 - `.storybook/`: Configuration for Storybook.
 - `__tests__/`: Unit tests for components and data fetching logic.
 - `src`
+  - `stories`: Stories for storybook.
   - `app`
-   - `details/[id]/page.tsx`: Details page for selected pokemon.
-  - `components/`: Reusable components used across the application.
-  - `context/`: Context for state management (e.g., search results, favorites).
-  - `styles/`: Styling for the application.
+      - `details/[id]/page.tsx`: Details page for selected pokemon.
+      - `components/`: Reusable components used across the application.
+      - `context/`: Context for state management (e.g. favorites).
 
 ## API Usage
 
