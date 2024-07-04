@@ -80,7 +80,7 @@ This project uses a public API for data fetching. You can choose any public API 
 To build the application for production:
 ```sh
 npm run build
-npm start
+npm run start
 ```
 
 ## Contact
