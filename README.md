@@ -63,6 +63,10 @@ This project is a Next.js web application built using TypeScript, designed to pr
   - `app`
       - `details/[id]/page.tsx`: Details page for selected pokemon.
       - `components/`: Reusable components used across the application.
+            - `PokemonCard.tsx`: Card to display basic pokemon details and add to favourites button.
+            - `PokemonDetailsCard.tsx`: Card to display pokemon details and add to favourites button.
+            - `PokemonList.tsx`: List to display Pokemons, and to lazy load / infinite scroll them.
+            - `SearchInput`: A search input for searching pokemons.
       - `context/`: Context for state management (e.g. favorites).
 
 ## API Usage
