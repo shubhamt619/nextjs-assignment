@@ -7,7 +7,6 @@ This project is a Next.js web application built using TypeScript, designed to pr
 
 - **Browse Page**
   - Search functionality with debounce
-  - (Optional) Filters for search results
   - (Optional) Download search results as CSV
   - Pagination or lazy loading for search results
 - **Details Page**
@@ -30,8 +29,8 @@ This project is a Next.js web application built using TypeScript, designed to pr
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/shubhamt619/nextjs-assignment.git
+   cd nextjs-assignment
    ```
 
 2. Install dependencies:
@@ -57,28 +56,18 @@ This project is a Next.js web application built using TypeScript, designed to pr
    ```
 
 ## Project Structure
-
-- `pages/`
-  - `browse.tsx`: Browse page with search and pagination functionality.
-  - `details/[id].tsx`: Details page for selected items.
-- `components/`: Reusable components used across the application.
-- `context/`: Context for state management (e.g., search results, favorites).
-- `styles/`: Styling for the application.
 - `.storybook/`: Configuration for Storybook.
-- `tests/`: Unit tests for components and data fetching logic.
+- `__tests__/`: Unit tests for components and data fetching logic.
+- `src`
+  - `app`
+   - `details/[id]/page.tsx`: Details page for selected pokemon.
+  - `components/`: Reusable components used across the application.
+  - `context/`: Context for state management (e.g., search results, favorites).
+  - `styles/`: Styling for the application.
 
 ## API Usage
 
 This project uses a public API for data fetching. You can choose any public API for development (e.g., [PokeAPI](https://pokeapi.co/api/v2/), [GitHub API](https://api.github.com/), etc.).
-
-## Approach
-
-1. **Setup Project**: Initialize a Next.js project with TypeScript, ESLint, Prettier, Mantine, and Storybook.
-2. **Browse Page**: Implement search, filters, CSV download, pagination/lazy loading, and data fetching.
-3. **Details Page**: Implement detailed view, navigation, and optional favorites functionality.
-4. **State Management**: Use React context or a state management library to manage the state.
-5. **Testing**: Write unit tests for components using Jest and mock API responses.
-6. **Documentation**: Document components and functionality using Storybook.
 
 ## Testing
 

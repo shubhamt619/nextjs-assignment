@@ -6,7 +6,7 @@ import { useFavorites } from '../context/FavouritesContext';
 
 const PokemonCard: React.FC<{
     pokemon: Pick<PokemonCardProps['pokemon'], "id" | "name" | "description" | "image">;
-    searchText: PokemonCardProps['searchText'];
+    searchText?: PokemonCardProps['searchText'];
 }> = ({ pokemon, searchText }) => {
 
     const { addToFavorites, removeFromFavorites, favorites } = useFavorites();
