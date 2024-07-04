@@ -6,6 +6,7 @@ import { Pokemon } from '../app/models/Pokemon';
 import "@mantine/core/styles.css";
 import '../app/globals.css'; // Import your CSS file here
 import { PokemonCardProps } from '../app/models/PokemonCardProps';
+import { FavoritesProvider } from '@/app/context/FavouritesContext';
 
 export default {
     title: 'Components/PokemonDetailCard',
@@ -13,7 +14,9 @@ export default {
     decorators: [
         (Story) => (
             <MantineProvider withGlobalClasses>
+                <FavoritesProvider>
                 <Story />
+                </FavoritesProvider>
             </MantineProvider>
         ),
     ],
